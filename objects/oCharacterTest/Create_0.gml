@@ -7,7 +7,7 @@
 event_inherited();
 
 name = "Test";
-emotions_sprites = [spr_test_base, spr_test_mad];
+emotions_sprites = [spr_linabelle_base, spr_test_mad];
 emotions.mad = 1;
 for (var _i = 0; _i < array_length(emotions_sprites) ;_i++) {
 	configure_speed_spr(emotions_sprites[_i], 2);

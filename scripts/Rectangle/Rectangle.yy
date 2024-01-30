@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "Dialogue",
+  "name": "Rectangle",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
