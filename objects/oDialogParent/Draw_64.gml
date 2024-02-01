@@ -41,36 +41,24 @@ if (display) {
 		draw_rectangle(_rctgl_margin, _gui_height - _sprite_name_y , _sprite_name_x, _gui_height - _sprite_dialog_y, true);
 	}
 	// Draw Sprite
-	
 	draw_set_colour(c_red);
-	draw_set_font(fnt_dialog);
 	if (current_action) {
-		var _str = "Test";
-		if (current_action.animation == "") {
-			len = string_length(current_action.dialogue);
-			if (char_current < len)
-		    {
-				char_current += char_speed;
-		    }
-			_str = string_copy(current_action.dialogue, 1, char_current);
-			var _padding = _rctgl_margin * 2;
-			draw_set_halign(current_action.txt_align);
-			var _text_start = current_action.txt_align == fa_left ? _padding : _sprite_dialog_x / 2;
-			
-			draw_text_ext(_text_start, (_gui_height - _sprite_dialog_y + _padding / 2), _str, 20, _gui_width - _padding - _rctgl_margin);
-			draw_set_halign(fa_left);
-			if (current_action.character != "") {
-				draw_text_ext(_padding, (_gui_height - _sprite_name_y + 8), current_action.character.name, 20, _sprite_name_x);
+		if (current_action.type == DIALOGS_TYPE.QUESTIONS) {
+			talk();
+			if (questions == "" && speaking == false) {
+				questions = instance_create_layer(0, 0, layer, oQuestion, {
+					questions: current_action.questions,
+					insert: insert_path_conditional
+				});
+				//questions.questions = current_action.questions;
 			}
+		}
+
+		if (current_action.type == DIALOGS_TYPE.NEW) {
+			talk();
 		}
 		if (!animation && !speaking) {
 			draw_sprite(spr_arrow, 0, _sprite_dialog_x - 50, _gui_height - _rctgl_margin - 40)
-		}
-		
-		if (current_action.questions) {
-			with (instance_create(0, 0, oQuestion)) {
-				questions = current_action.questions;
-			}
 		}
 		// DEBUG
 		if (speaking == true) {

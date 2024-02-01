@@ -13,7 +13,6 @@ function Actions() constructor {
 			character: _character,
 			dialogue: _content, 
 			emotion: _emotion, 
-			animation: "", 
 			txt_align: _txt_align});
 	}
 	add_anim = function(_character, _anim, _emotion = 0) {
@@ -23,13 +22,17 @@ function Actions() constructor {
 			animation: _anim, 
 			emotion: _emotion});
 	}
-	add_questions = function(_character, _questions,  _anim, _emotion = 0) {
+	add_questions = function(_character, _content, _questions, _emotion = 0, _txt_align = fa_left) {
 		push({
 			type: DIALOGS_TYPE.QUESTIONS,
-			character: _character, 
-			questions: _questions, 
-			animation: _anim, 
-			emotion: _emotion});
+			character: _character,
+			dialogue: _content,
+			questions: _questions,  
+			emotion: _emotion,
+			txt_align: _txt_align});
+	}
+	insert_array = function (_new_arr) {
+		_dialogs = array_concat(_new_arr, _dialogs);
 	}
 	pop = function() {
 		return array_shift(_dialogs);

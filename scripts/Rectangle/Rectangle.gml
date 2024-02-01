@@ -23,11 +23,11 @@ function Rectangle (_text = "") constructor {
 	}
 	function draw_with_txt () {
 		draw();
-		var _middle_y = units.y1;
+		var _middle_y = units.y1 + ((units.y2 - units.y1) / 2) / 2;
 		var _middle_x = ((units.x2 - units.x1) / 2) + units.x1;
 		draw_set_color(c_red);
 		draw_set_halign(fa_center);
-		draw_text_ext(_middle_x, _middle_y, content_txt, 1 , 300);
+		draw_text_ext(_middle_x, _middle_y, content_txt, 1 , 2000);
 	}
 	function _is_hovered() {
 		if (hovercheck) {
