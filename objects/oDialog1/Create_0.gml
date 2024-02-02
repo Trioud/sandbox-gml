@@ -17,9 +17,9 @@ option4.add_dialog(test, "LE GOAT QUI EST KIKI OUI TOUT A FAIT");
 test.image_alpha = 0;
 dummy.image_alpha = 0;
 
-N("", "Sunday 21 January - 10:30\n\nMain Avenue", 0 , fa_center);
+N("", "[fa_center]Sunday 21 January - 10:30\nMain Avenue", 0 , fa_center);
 A(test, "appear");
-N(test, "Arthur le gros zbob", 0);
+N(test, "Je suis une phrase gigantesque mais qui est cense etre wrap proprement meme si ca potentiellement peut paraitre tres long si tu captes ce que je veux dire", 0);
 A(test, "disappear");
 A(dummy, "appear");
 Q(dummy, "Arthur est-il une enorme merde ?", [{txt: "Evidemment", answers: option1._dialogs}, 

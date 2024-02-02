@@ -28,7 +28,16 @@ mask_layer_alpha = 1;
 mask_layer_id = layer_get_id("Mask");
 mask_layer = layer_background_get_id(mask_layer_id);
 character_id = layer_get_id("Character_GUI");
-scribble_font_set_default("fnt_bigdialg");
+scribble_font_set_default("fnt_bigdialog");
+draw_set_font(fnt_bigdialog);
+typist = scribble_typist();
+typist.in(char_speed, 0);
+
+typist.function_on_complete(function () {
+	speaking = false;
+	if (current_action.character != "") // In case of character being empty
+		current_action.character.stop_talking();
+})
 /* // A REFACTOR
 var _base_w = 640;
 var _base_h = 360;
@@ -81,6 +90,7 @@ next_action = function(_current_action) {
 		speaking = true;
 		char_current = 1;
 	}
+	typist.in(char_speed, 0);
 }
 
 insert_path_conditional = function(_arr) { // @args: Actions class
@@ -103,17 +113,15 @@ talk = function () {
 
 	var _padding = _rctgl_margin * 2;
 	var _text_start = current_action.txt_align == fa_left ? _padding : _sprite_dialog_x / 2;
-	var _str_stock = "";
-	len = string_length(current_action.dialogue);
-	if (char_current < len)
-		char_current += char_speed;
 
-	_str_stock = string_copy(current_action.dialogue, 1, char_current);
-	draw_set_halign(current_action.txt_align);
-	scribble(_text_start).draw(_text_start, (_gui_height - _sprite_dialog_y + _padding / 2), );
-	draw_text_ext(_text_start, (_gui_height - _sprite_dialog_y + _padding / 2), _str_stock, 20, _gui_width - _padding - _rctgl_margin);
-	draw_set_halign(fa_left);
+	/*scribble(current_action.dialogue)
+	.line_spacing("300%")
+	.wrap(_gui_width - _padding - _rctgl_margin)
+	.draw(_text_start, (_gui_height - _sprite_dialog_y + _padding / 2), typist) */
+	draw_text_ext(_text_start, (_gui_height - _sprite_dialog_y + _padding / 2), "Je suis un individu", 10, 300);
+
 	if (current_action.character != "") {
-		draw_text_ext(_padding, (_gui_height - _sprite_name_y + 8), current_action.character.name, 20, _sprite_name_x);
+		scribble(current_action.character.name)
+		.draw(_padding, (_gui_height - _sprite_name_y + 8));
 	}
 }

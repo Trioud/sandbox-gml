@@ -41,7 +41,8 @@ if (display) {
 		draw_rectangle(_rctgl_margin, _gui_height - _sprite_name_y , _sprite_name_x, _gui_height - _sprite_dialog_y, true);
 	}
 	// Draw Sprite
-	draw_set_colour(c_red);
+
+	draw_set_color(c_red);
 	if (current_action) {
 		if (current_action.type == DIALOGS_TYPE.QUESTIONS) {
 			talk();

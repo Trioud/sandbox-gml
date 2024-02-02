@@ -1,25 +1,13 @@
 /// @description Insert description here
 // You can write your code in this editor
-if (!display) {
-	if (keyboard_check_released(vk_anykey)) {
-		display = true;
-		current_action = actions.pop();
-	}
-}
 if (display == true) {
 	// Stop SPEAKING when no more characters are left
 	// SPEAK HANDLER
 	if (current_action.type == DIALOGS_TYPE.NEW) {
-		if (floor(char_current) == len) { // If no more characters to display
-				speaking = false;
-				if (current_action.character != "") // In case of character being empty
-					current_action.character.stop_talking();
-		}
-		else
-			speaking = true;
 		if (keyboard_check_released(vk_anykey)) { // EVENT ON CLICK
 			if (speaking == true) {
 				char_speed = 1;
+				typist.in(char_speed, 0);
 			}
 			else {
 				current_action = actions.pop();
@@ -28,7 +16,7 @@ if (display == true) {
 		}
 	}
 	else if (current_action.type == DIALOGS_TYPE.QUESTIONS) {
-		if (floor(char_current) == len) { // If no more characters to display
+		/*if (floor(char_current) == len) { // If no more characters to display
 			speaking = false;
 			if (mask_layer_alpha > 0.6)
 				mask_layer_alpha += 0.05;
@@ -37,10 +25,11 @@ if (display == true) {
 				current_action.character.stop_talking();
 		}
 		else
-			speaking = true;
+			speaking = true; */
 		if (keyboard_check_released(vk_anykey)) { // EVENT ON CLICK
 			if (speaking == true) {
 				char_speed = 1;
+				typist.in(char_speed, 0);
 			}
 		}
 	}
@@ -74,6 +63,14 @@ if (display == true) {
 		}
 	}
 	
+}
+
+if (!display) {
+	if (keyboard_check_released(vk_anykey)) {
+		display = true;
+		current_action = actions.pop();
+		next_action(current_action);
+	}
 }
 
 /*if (display == true) {
